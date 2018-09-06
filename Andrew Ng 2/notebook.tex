@@ -1,0 +1,1054 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{hw-wk9-recommender}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{In which I brazenly defy Professor Ng and do his recommender
+system homework in Python instead of
+Matlab.}\label{in-which-i-brazenly-defy-professor-ng-and-do-his-recommender-system-homework-in-python-instead-of-matlab.}
+
+Week 9 of Andrew Ng's ML course on Coursera discusses two very common
+applied ML algorithms: anomaly detection (think fraud detection or
+manufacturing quality control) and recommender systems (think Amazon or
+Netflix). Here I focus on the recommender system portion and use the
+homework data set to learn about the relevant python tools (the anomaly
+detection portion was covered
+\href{http://sdsawtelle.github.io/blog/output/week9-anomaly-andrew-ng-machine-learning-with-python.html}{here}).
+
+\begin{quote}
+\subsection{Tools Covered:}\label{tools-covered}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{BaseEstimator} for rolling your own estimator in sklearn
+\item
+  Implementing stochastic versus batch gradient descent
+\end{itemize}
+\end{quote}
+
+    \section{Recommender Systems}\label{recommender-systems}
+
+According to Dr. Ng, Recommender systems are rated as some of the most
+important problems faced by Silicon Valley companies, but they get
+comparatively little attention in ML academic research.
+
+\subsection{Model Underlying Recommender
+Systems}\label{model-underlying-recommender-systems}
+
+A prototypical scenario is a data set which indicates the 0-to-5 star
+rating given to a set of movies, by a set of users (some of these will
+be missing if a user hasn't rated a specific movie). \textbf{The
+fundamental assumption of recommendation systems is that a users rating
+of a movie is determined by a \emph{paired} set of factors that reflect
+the characteristics intrinsic to that user and the characteristics
+intrinsic to that movie.} For example, a user-intrinsic feature
+capturing how much a user likes romance, and the corresponding
+movie-intrinsic feature capturing the degree of romance in a movie.
+Specifically, we assume a simple linear regression so that
+
+\begin{align*}
+y(i, j) = (\theta^{(j)})^Tx^{(i)},
+\end{align*}
+
+where \(y(i, j)\) is the rating given by the \(j^{th}\) user to the
+\(i^{th}\) movie, and \(\theta^{(j)}\) represents factors intrinsic to
+user \(j\) while \(x^{(i)}\) represents factors intrinsic to movie
+\(i\). You can envision that user-factors and movie-factors live in the
+same space, where ratings are given by the inner product between them.
+This model can be vectorized as
+
+\begin{align*}
+\mathbf{Y} \sim \mathbf{Y}' = \mathbf{X}\mathbf{\Theta}^T,
+\end{align*}
+
+where \(\mathbf{Y}\) are the ground truth ratings, \(\mathbf{Y}'\) are
+the predicted ratings, \(\mathbf{X}\) is a matrix where each row
+contains factors of a specific movie, and \(\mathbf{\Theta}\) is a
+matrix where each row contains factors of a specific user. The problem
+then amounts to finding \(\mathbf{X}\) and \(\mathbf{\Theta}\) that
+makes \(\mathbf{Y}\) as close as possible to \(\mathbf{Y'}\), typically
+in the sense of element-wise squared error.
+
+\textbf{This is why you hear the term \emph{Low Rank Matrix
+Factorization} thrown around - you are literally trying to factor a
+matrix into a product of lower-rank matrices, just like you would factor
+\(21 = 3\;x\;7\).} If \(\mathbf{Y}\) had no missing values and all the
+values were consistent with our model then we could use SVD to
+analytically find \(\mathbf{X}\) and \(\mathbf{\Theta}\). But imputing
+missing values tends to be tricky and, at any rate it would create a
+GINORMOUS non-sparse matrix that would be computationally infeasible to
+work with. So we're stuck using gradient descent to minimize the sum of
+squared errors between observed and predicted ratings, together with any
+regularization we want to include. In this way we are finding the best
+approximate factorization of \(\mathbf{Y}\) by looking only at the
+existing ratings.
+
+    \subsection{Implicit vs. Explicit Interaction
+Data}\label{implicit-vs.-explicit-interaction-data}
+
+I'm going to keep talking in terms of the movie ratings example, but we
+can generalize recommender systems to refer to any set of users and
+products, together with some measure of "interaction" between them. The
+most useful measures of interaction are when the user \emph{explicitly}
+tells us how much the like or use the product, such as with a thumbs up
+or down. But you can also gather \emph{implicit} interaction metrics,
+like number of page views, mouse movements, or length of viewing time.
+This data is generally not as sparse, so the actual implementation of
+factorization may need to be different.
+
+    \subsection{Content-Based Approach vs. Collaborative
+Filtering}\label{content-based-approach-vs.-collaborative-filtering}
+
+In a \textbf{content-based} approach to recommendation we take explicit,
+rather than latent factors, for the movie characteristics, and then we
+learn the latent factors for user characteristics. Specifically, we
+populate the columns of \(\mathbf{X}\) with features which reflect some
+known characteristics of movies lead actor, run-time, or genre. Then we
+learn the corresponding user factors in \(\Theta\), by using squared
+error with regularization on all the \(\theta\)'s. Note that you could
+instead use explicit user factors, or a mixture!
+
+In contrast to a content-based approach, in \textbf{collaborative
+filtering} (CF) we treat both the user characteristics and the movie
+characteristics as latent features that can be mined just by looking at
+the existing ratings. The users are collaborating, by giving their
+ratings, to help the system uncover information about users and or
+movies that will let it to make better predictions. For an
+extraordinarily clear intro to CF check out
+\href{https://datajobs.com/data-science-repo/Recommender-Systems-\%5BNetflix\%5D.pdf}{this
+article by Netflix Prize winners} on the subject. I am following much of
+their content in this post.
+
+CF generally performs better and is more powerful than content-based
+approaches, but is not always possible or appropriate. Chris Clark's
+great
+\href{http://blog.untrod.com/2016/06/simple-similar-products-recommendation-engine-in-python.html}{post
+on recommender systems} explains the benefits of each approach.
+Content-based approaches are useful for a "cold-start" when you don't
+have existing information about a user or product, or when you know the
+user is interested in a particular product as with a click-through from
+a google search for that product. On the other hand, the strength of CF
+is casting a broader and more flexible net in identifying "similar"
+products:
+
+\begin{quote}
+What we really want is a recommendation system that drives incremental
+sales (e.g. sales that would not have happened otherwise). If a customer
+is looking at the product details page for Harry Potter and the Chamber
+of Secrets, and your recommender shows Prisoner of Azkaban, and the
+customer buys it, the data scientists back at Random House HQ should not
+be high-fiving. It's a safe bet that that customer already knew there
+were more than two books in the series and would have bought Prisoner of
+Azkaban anyway. It was not an incremental sale.
+\end{quote}
+
+    \subsection{Flavors of Collaborative
+Filtering}\label{flavors-of-collaborative-filtering}
+
+Collaborative filtering (CF) treats both the user characteristics and
+the movie characteristics as latent features that can be mined just by
+looking at the existing ratings. \textbf{Neighborhood methods of CF}
+mine this information by letting the ratings reveal neighborhoods of
+similar movies or similar users. For instance, the neighbors of a
+particular movie \(m_j\) will be other movies to which users tended to
+give a similar rating as they gave to \(m_j\). If most users who rated
+both \emph{Need for Speed} and \emph{Tokyo Drift} tended to rate them
+similarly, then those movies are close neighbors and someone who liked
+one will probably like the other. Likewise, two users are neighbors if,
+for movies that they have both rated, their ratings tend to agree. If
+your close neighbor liked a movie, you probably would too. Specifically,
+with neighborhood methods the two common approaches to predicting a user
+\(u_j\)'s response to an unrated movie \(m_i\) is: - finding the group
+of \(k\) users most simimilar to \(u_j\) and averaging their ratings of
+movie \(m_j\) - finding the group of \(k\) movies most similar to
+\(m_j\) and averaging user \(u_i\)'s ratings of those
+
+\textbf{Latent Factor methods of CF} use the existing ratings to
+actually learn values for both the latent user characteristics and the
+latent movie characteristics. This is generally a more powerful approach
+than neighborhood methods. The \(x\)'s and \(\theta\)'s are learned
+simultaneously by minimizing a total regularized cost function:
+
+\begin{align*}
+J(x^{(1)},..., x^{(n_M)}, \theta^{(1)}, ..., \theta^{(n_u)}) = \textrm{all squared errors} \; + \; \textrm{penalty on all $x_k$} \; + \; \textrm{penalty on all $\theta_k$},
+\end{align*}
+
+Once all the latent factors are learned, predictions for user \(u_j\)'s
+response to an unrated movie \(m_i\) is just the inner product of the
+learned \(\theta^{(j)}\) with \(x^{(i)}\). The hyperparameters of the
+full decision procedure are the number of pairs of latent factors and
+the regularization strength in the objective function.
+
+    \subsection{Full Specification of Latent Factor Collaborative
+Filtering}\label{full-specification-of-latent-factor-collaborative-filtering}
+
+Here is the complete mathematical specification of the model and
+algorithm for latent-factors collaborative filtering. We define: -
+\(q_i, p_i \in R^f\) are the latent movie and user factors, respectively
+- \(r_{ui}\) is the rating given to the \(i^{th}\) movie by the
+\(u^{th}\) user - \(\kappa\) is the set of all pairs \((u, i)\) for
+which we have an existing rating
+
+Our estimator for user ratings is
+
+\begin{align*}
+\hat{r_{ui}} = q_i^Tp_u,\\
+\textrm{or in other words} \; \mathbf{R} \sim \mathbf{R}' = \mathbf{Q}\mathbf{P}^T.
+\end{align*}
+
+while our objective is:
+
+\begin{align*}
+\qquad \min_{\textrm{all} \, q, p} J, \qquad J = \bigg[ \sum_{(u,i)\in\kappa} (r_{ui} - q_i^Tp_u)^2 + \lambda\big(||q_i||^2 + ||p_u||^2\big)\bigg].
+\end{align*}
+
+\subsubsection{Numerical Optimization}\label{numerical-optimization}
+
+The objective function is minimized over the product space \(q\times p\)
+typically by either Stochastic Gradient Descent (SGD) or Alternating
+Least Squares (ALS).
+
+    For implementing SGD the following framework is helfpul. First define
+the error between a prediction and the actual rating as:
+
+\begin{align*}
+e_{ui} \equiv r_{ui} - q_i^Tp_u,\\
+\mathbf{E} = \mathbf{R} - \mathbf{P}\mathbf{Q}^T
+\end{align*}
+
+    Consider the example below of the partial derivative of the loss with
+respect to a single latent factor: the \(k^{th}\) component of the
+\(i^{th}\) movie feature vector.
+
+\begin{align*}
+\frac{\partial J}{(q_i)_k} = \sum_{(u,i)\in\kappa} 2(r_{ui} - q_i^Tp_u)^2(-(p_u)_k) + 2\lambda(q_i)_k
+\end{align*}
+
+Inspecting the above, we can see that the coordinate descent update rule
+for SGD for a single observation should be
+
+\begin{align*}
+q_i \leftarrow q_i + \gamma(e_{ui}\cdot p_u - \lambda\cdot q_i)\\
+p_u \leftarrow p_u + \gamma(e_{ui}\cdot q_i - \lambda\cdot p_u),
+\end{align*}
+
+where \(\gamma\) is the learning rate.
+
+Alternatively, the update rule for batch gradient descent can be heavily
+vectorized to yield
+
+\begin{align*}
+\mathbf{P} \leftarrow \mathbf{P} + \gamma\big(\mathbf{E}\mathbf{Q} - \lambda\mathbf{P}\big)\\
+\mathbf{Q} \leftarrow \mathbf{Q} + \gamma\big(\mathbf{E}^T\mathbf{Q} - \lambda\mathbf{Q}\big).
+\end{align*}
+
+    \subsubsection{Including Biases}\label{including-biases}
+
+If I presented you with the raw matrix of ratings data and asked to you
+fill in a specific missing rating, you might make your guess by lookimg
+at several pieces of prior information such as: - what is the overall
+average rating from the data set, \(\mu\). - How much higher or lower
+than \(\mu\) does this user tend to rate movies, \(b_u\). Is he a harsh
+critic or particularly easy to please compared to the average? - How
+much higher or lower than \(\mu\) does this movie tend to get rated,
+\(b_i\). Is it generally considered a good or bad film compared to the
+average?
+
+These pieces of prior information can be combined together into the
+\emph{bias}, \(b_{ui} = \mu + b_i + b_u\) of rating \(r_{ui}\). So far
+our model says that a rating is entirely due to the \emph{interaction}
+between a particular movie and a particular user, \(q_u^Tp_i\), but in
+light of this discussion we want to also include the effect of this bias
+(which is independent of the interaction):
+
+\begin{align*}
+\hat{r_{ui}} = q_i^Tp_u + b_{ui}
+\end{align*}
+
+I won't be doing anything with bias for this homework, but I thought I'd
+mention it because it is understood to explain a huge amount of the
+signal in recommender systems.
+
+    \subsubsection{Further Reading}\label{further-reading}
+
+The following links are also helpful and high quality: -
+\href{http://blog.ethanrosenthal.com/2015/11/02/intro-to-collaborative-filtering/}{Ethan
+Rosenthal's excellent Intro to CF with a simple Python Implementation of
+Neighborhood Methods} -
+\href{http://www.quuxlabs.com/blog/2010/09/matrix-factorization-a-simple-tutorial-and-implementation-in-python/}{Quuxlabs
+Tutorial on Matrix Factorization in Python} -
+\href{https://lazyprogrammer.me/tutorial-on-collaborative-filtering-and-matrix-factorization-in-python/}{LazyProgrammer
+Tutorial on Matrix Factorization and CF in Python} -
+\href{http://www.slideshare.net/PyData/thurau-pydata-2014}{PyData PPT on
+Low Rank Matrix Approximation Methods Python} -
+\href{http://pythonhosted.org/trustedanalytics/CollaborativeFilteringNewPlugin_Summary.html}{Simple
+math of Matrix Factorization using gradient descent} -
+\href{http://acsweb.ucsd.edu/~dklim/mf_presentation.pdf}{Simple PPT of
+Matrix Factorization for CF} -
+\href{https://datajobs.com/data-science-repo/Recommender-Systems-\%5BNetflix\%5D.pdf}{Netflix
+Prize Paper on Recommender Systems} -
+\href{http://online.cambridgecoding.com/notebooks/mhaller/implementing-your-own-recommender-systems-in-python-using-stochastic-gradient-descent-4}{Cambridge
+Coding Academy Tutorial on Implenting SGD and ALS for latent factors CF}
+- \href{http://sifter.org/~simon/journal/20061211.html}{Blog post by
+Simon Funk where he first discusses the Matrix Factorization
+Implementation for latent factors CF}
+
+    \section{Recommender Systems in Sklearn... Not Actually a
+Thing}\label{recommender-systems-in-sklearn...-not-actually-a-thing}
+
+There is a neat,
+\href{https://github.com/scikit-learn/scikit-learn/issues/6142}{short
+discussion on github} about why scikit-learn doesn't implement any
+recommender system classes: the upshot is that these problems don't
+generally follow the neat-and-tidy \texttt{fit} + \texttt{predict}
+paradigm. I somewhat disagree with this, especially when it comes to
+latent factors collaborative filtering methods, and so after building
+the meat of the CF algorithm I'm going to try rolling my own Recommender
+System estimator and using it with \texttt{GridSearchCV}.
+
+    \section{Quick Look at the Data}\label{quick-look-at-the-data}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{io}
+        \PY{k+kn}{import} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats} \PY{k}{as} \PY{n+nn}{stats}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib} 
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{from} \PY{n+nn}{numpy} \PY{k}{import} \PY{n}{random}
+        \PY{k+kn}{import} \PY{n+nn}{pickle}
+        \PY{k+kn}{import} \PY{n+nn}{timeit}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{GridSearchCV}
+        
+        
+        \PY{k+kn}{import} \PY{n+nn}{snips} \PY{k}{as} \PY{n+nn}{snp}  \PY{c+c1}{\PYZsh{} my snippets}
+        \PY{n}{snp}\PY{o}{.}\PY{n}{prettyplot}\PY{p}{(}\PY{n}{matplotlib}\PY{p}{)}  \PY{c+c1}{\PYZsh{} my aesthetic preferences for plotting}
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{cd} \PY{n}{hw}\PY{o}{\PYZhy{}}\PY{n}{wk9}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+C:\textbackslash{}Users\textbackslash{}Sonya\textbackslash{}Box Sync\textbackslash{}Projects\textbackslash{}course-machine-learning\textbackslash{}hw-wk9
+
+    \end{Verbatim}
+
+    \emph{Disclaimer: This little exercise with this movie ratings toy data
+set is very common. You can see two examples
+\href{http://blog.ethanrosenthal.com/2015/11/02/intro-to-collaborative-filtering/}{here}
+and
+\href{http://online.cambridgecoding.com/notebooks/mhaller/implementing-your-own-recommender-systems-in-python-using-stochastic-gradient-descent-4}{here}
+of people doing \emph{exactly} what I'm about to do.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{n}{header} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{user\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{item\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rating}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{timestamp}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{u.data}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{names}\PY{o}{=}\PY{n}{header}\PY{p}{)}
+         \PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}26}]:}    user\_id  item\_id  rating  timestamp
+         0      196      242       3  881250949
+         1      186      302       3  891717742
+         2       22      377       1  878887116
+         3      244       51       2  880606923
+         4      166      346       1  886397596
+\end{Verbatim}
+            
+    We expect most users haven't rated most movies, so let's get a sense of
+exactly how sparse the data is. The number of missing ratings should be
+the difference between the number of rows here, and the total number of
+possible ratings \(n_{users} \times n_{movies}\).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{n\PYZus{}u} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{user\PYZus{}id}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{n\PYZus{}m} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{item\PYZus{}id}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{sparsity} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{n}{n\PYZus{}u}\PY{o}{*}\PY{n}{n\PYZus{}m}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sparsity of ratings is }\PY{l+s+si}{\PYZpc{}.2f}\PY{l+s+si}{\PYZpc{}\PYZpc{}}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{sparsity}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+sparsity of ratings is 6.30\%
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{c+c1}{\PYZsh{} Split the dataframe into a train and test set}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
+         \PY{n}{train\PYZus{}data}\PY{p}{,} \PY{n}{test\PYZus{}data} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{df}\PY{p}{,}\PY{n}{test\PYZus{}size}\PY{o}{=}\PY{l+m+mf}{0.25}\PY{p}{)}
+         
+         \PY{n}{train\PYZus{}data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{train\PYZus{}data}\PY{p}{)}
+         \PY{n}{test\PYZus{}data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{test\PYZus{}data}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{c+c1}{\PYZsh{} Create training and test matrix}
+         \PY{n}{R} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{n\PYZus{}u}\PY{p}{,} \PY{n}{n\PYZus{}m}\PY{p}{)}\PY{p}{)}
+         \PY{k}{for} \PY{n}{line} \PY{o+ow}{in} \PY{n}{train\PYZus{}data}\PY{o}{.}\PY{n}{itertuples}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{n}{R}\PY{p}{[}\PY{n}{line}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{line}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{line}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}  
+             
+         \PY{n}{T} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{n\PYZus{}u}\PY{p}{,} \PY{n}{n\PYZus{}m}\PY{p}{)}\PY{p}{)}
+         \PY{k}{for} \PY{n}{line} \PY{o+ow}{in} \PY{n}{test\PYZus{}data}\PY{o}{.}\PY{n}{itertuples}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{n}{T}\PY{p}{[}\PY{n}{line}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{line}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{line}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}
+\end{Verbatim}
+
+
+    \section{Implementation with Stochastic Gradient
+Descent}\label{implementation-with-stochastic-gradient-descent}
+
+Cambridge Coding Academy Online has a neat tutorial where they implement
+this exact algorithm with this exact Toy Data Set. They chose to use
+Stochastic Gradient Descent for their optimzation, which loops through
+individual ratings (making several full passes through the training set)
+and updates the relevant latent factors each time. This approch can't be
+matricized as effectively as normal gradient descent, but it tends to
+converge more quickly so in terms of full computational cost it's not
+clear which is better (might depend on the size of the data set). For
+more on the difference between these two approaches,
+\href{https://www.quora.com/Whats-the-difference-between-gradient-descent-and-stochastic-gradient-descent/answer/Sebastian-Raschka-1?srid=vrN4}{here
+is a neat and brief Quora answer}. I'm going to try implementing it both
+ways.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{n}{start\PYZus{}time} \PY{o}{=} \PY{n}{timeit}\PY{o}{.}\PY{n}{default\PYZus{}timer}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Scoring Function: Root Mean Squared Error}
+         \PY{k}{def} \PY{n+nf}{rmse\PYZus{}score}\PY{p}{(}\PY{n}{R}\PY{p}{,} \PY{n}{Q}\PY{p}{,} \PY{n}{P}\PY{p}{)}\PY{p}{:}
+             \PY{n}{I} \PY{o}{=} \PY{n}{R} \PY{o}{!=} \PY{l+m+mi}{0}  \PY{c+c1}{\PYZsh{} Indicator function which is zero for missing data}
+             \PY{n}{ME} \PY{o}{=} \PY{n}{I} \PY{o}{*} \PY{p}{(}\PY{n}{R} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{P}\PY{p}{,} \PY{n}{Q}\PY{o}{.}\PY{n}{T}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Errors between real and predicted ratings}
+             \PY{n}{MSE} \PY{o}{=} \PY{n}{ME}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}  
+             \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{MSE}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{I}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} sum of squared errors}
+         
+         \PY{c+c1}{\PYZsh{} Set parameters and initialize latent factors}
+         \PY{n}{f} \PY{o}{=} \PY{l+m+mi}{20}  \PY{c+c1}{\PYZsh{} Number of latent factor pairs}
+         \PY{n}{lmbda} \PY{o}{=} \PY{l+m+mf}{0.5} \PY{c+c1}{\PYZsh{} Regularisation strength}
+         \PY{n}{gamma}\PY{o}{=}\PY{l+m+mf}{0.01}  \PY{c+c1}{\PYZsh{} Learning rate}
+         \PY{n}{n\PYZus{}epochs} \PY{o}{=} \PY{l+m+mi}{50}  \PY{c+c1}{\PYZsh{} Number of loops through training data}
+         \PY{n}{P} \PY{o}{=} \PY{l+m+mi}{3} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{n}{n\PYZus{}u}\PY{p}{,} \PY{n}{f}\PY{p}{)} \PY{c+c1}{\PYZsh{} Latent factors for users}
+         \PY{n}{Q} \PY{o}{=} \PY{l+m+mi}{3} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{n}{n\PYZus{}m}\PY{p}{,} \PY{n}{f}\PY{p}{)} \PY{c+c1}{\PYZsh{} Latent factors for movies}
+         
+         \PY{c+c1}{\PYZsh{} Stochastic GD}
+         \PY{n}{train\PYZus{}errors} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{test\PYZus{}errors} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{users}\PY{p}{,}\PY{n}{items} \PY{o}{=} \PY{n}{R}\PY{o}{.}\PY{n}{nonzero}\PY{p}{(}\PY{p}{)}      
+         \PY{k}{for} \PY{n}{epoch} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n\PYZus{}epochs}\PY{p}{)}\PY{p}{:}
+             \PY{k}{for} \PY{n}{u}\PY{p}{,} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{users}\PY{p}{,}\PY{n}{items}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{e} \PY{o}{=} \PY{n}{R}\PY{p}{[}\PY{n}{u}\PY{p}{,} \PY{n}{i}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{P}\PY{p}{[}\PY{n}{u}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{Q}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{T}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Error for this observation}
+                 \PY{n}{P}\PY{p}{[}\PY{n}{u}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{+}\PY{o}{=} \PY{n}{gamma} \PY{o}{*} \PY{p}{(} \PY{n}{e} \PY{o}{*} \PY{n}{Q}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{lmbda} \PY{o}{*} \PY{n}{P}\PY{p}{[}\PY{n}{u}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{p}{)} \PY{c+c1}{\PYZsh{} Update this user\PYZsq{}s features}
+                 \PY{n}{Q}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{+}\PY{o}{=} \PY{n}{gamma} \PY{o}{*} \PY{p}{(} \PY{n}{e} \PY{o}{*} \PY{n}{P}\PY{p}{[}\PY{n}{u}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{lmbda} \PY{o}{*} \PY{n}{Q}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Update this movie\PYZsq{}s features}
+             \PY{n}{train\PYZus{}errors}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{rmse\PYZus{}score}\PY{p}{(}\PY{n}{R}\PY{p}{,}\PY{n}{Q}\PY{p}{,}\PY{n}{P}\PY{p}{)}\PY{p}{)} \PY{c+c1}{\PYZsh{} Training RMSE for this pass}
+             \PY{n}{test\PYZus{}errors}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{rmse\PYZus{}score}\PY{p}{(}\PY{n}{T}\PY{p}{,}\PY{n}{Q}\PY{p}{,}\PY{n}{P}\PY{p}{)}\PY{p}{)} \PY{c+c1}{\PYZsh{} Test RMSE for this pass}
+         
+         \PY{c+c1}{\PYZsh{} Print how long it took}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Run took }\PY{l+s+si}{\PYZpc{}.2f}\PY{l+s+s2}{ seconds}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{timeit}\PY{o}{.}\PY{n}{default\PYZus{}timer}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{start\PYZus{}time}\PY{p}{)}\PY{p}{)}
+             
+         \PY{c+c1}{\PYZsh{} Check performance by plotting train and test errors}
+         \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{train\PYZus{}errors}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{g}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Training RMSE}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{test\PYZus{}errors}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{r}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Test RMSE}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{snp}\PY{o}{.}\PY{n}{labs}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of Epochs}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{RMSE}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Error During Stochastic GD}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Run took 77.66 seconds
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}33}]:} <matplotlib.legend.Legend at 0x2c4160d8898>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_21_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{c+c1}{\PYZsh{} See how well we did on Test Set Predictions}
+         \PY{n}{Rhat} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{P}\PY{p}{,} \PY{n}{Q}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+         \PY{n}{fig}\PY{p}{,} \PY{n}{axs} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{]}\PY{p}{,} \PY{n}{nrows}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{ncols}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{sharex}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Stochastic GD Test Performance}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{k}{for} \PY{n}{idx}\PY{p}{,} \PY{n}{ax} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{axs}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{n}{vals} \PY{o}{=} \PY{n}{Rhat}\PY{p}{[}\PY{n}{T} \PY{o}{==} \PY{n}{idx}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{vals}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Ground Truth Rating = }\PY{l+s+si}{\PYZpc{}i}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{idx}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_22_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \section{Implementation with Batch Gradient
+Descent}\label{implementation-with-batch-gradient-descent}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}472}]:} \PY{n}{start\PYZus{}time} \PY{o}{=} \PY{n}{timeit}\PY{o}{.}\PY{n}{default\PYZus{}timer}\PY{p}{(}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} Scoring Function: Root Mean Squared Error}
+          \PY{k}{def} \PY{n+nf}{rmse\PYZus{}score}\PY{p}{(}\PY{n}{R}\PY{p}{,} \PY{n}{Q}\PY{p}{,} \PY{n}{P}\PY{p}{)}\PY{p}{:}
+              \PY{n}{I} \PY{o}{=} \PY{n}{R} \PY{o}{!=} \PY{l+m+mi}{0}  \PY{c+c1}{\PYZsh{} Indicator function which is zero for missing data}
+              \PY{n}{ME} \PY{o}{=} \PY{n}{I} \PY{o}{*} \PY{p}{(}\PY{n}{R} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{P}\PY{p}{,} \PY{n}{Q}\PY{o}{.}\PY{n}{T}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Errors between real and predicted ratings}
+              \PY{n}{MSE} \PY{o}{=} \PY{n}{ME}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}  
+              \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{MSE}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{I}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} sum of squared errors}
+          
+          \PY{c+c1}{\PYZsh{} Set parameters and initialize latent factors}
+          \PY{n}{f} \PY{o}{=} \PY{l+m+mi}{20}  \PY{c+c1}{\PYZsh{} Number of latent factor pairs}
+          \PY{n}{lmbda} \PY{o}{=} \PY{l+m+mi}{50} \PY{c+c1}{\PYZsh{} Regularisation strength}
+          \PY{n}{gamma} \PY{o}{=} \PY{l+m+mf}{9e\PYZhy{}5} \PY{c+c1}{\PYZsh{} Learning rate}
+          \PY{n}{n\PYZus{}epochs} \PY{o}{=} \PY{l+m+mi}{220}  \PY{c+c1}{\PYZsh{} Number of loops through training data}
+          \PY{n}{P} \PY{o}{=} \PY{l+m+mi}{3} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{n}{n\PYZus{}u}\PY{p}{,} \PY{n}{f}\PY{p}{)} \PY{c+c1}{\PYZsh{} Latent factors for users}
+          \PY{n}{Q} \PY{o}{=} \PY{l+m+mi}{3} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{n}{n\PYZus{}m}\PY{p}{,} \PY{n}{f}\PY{p}{)} \PY{c+c1}{\PYZsh{} Latent factors for movies}
+          
+          \PY{c+c1}{\PYZsh{} Batch GD}
+          \PY{n}{train\PYZus{}errors} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{n}{test\PYZus{}errors} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{k}{for} \PY{n}{epoch} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n\PYZus{}epochs}\PY{p}{)}\PY{p}{:} 
+              \PY{n}{ERR} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{R} \PY{o}{!=} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{R} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{P}\PY{p}{,} \PY{n}{Q}\PY{o}{.}\PY{n}{T}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} compute error with present values of Q, P, ZERO if no rating   }
+          \PY{c+c1}{\PYZsh{}     P += gamma*(np.dot(Q.T, ERR.T).T \PYZhy{} lmbda*P)  \PYZsh{} update rule}
+          \PY{c+c1}{\PYZsh{}     Q += gamma*(np.dot(P.T, ERR).T \PYZhy{} lmbda*Q)  \PYZsh{} update rule}
+              
+              \PY{n}{P} \PY{o}{+}\PY{o}{=} \PY{n}{gamma}\PY{o}{*}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{ERR}\PY{p}{,} \PY{n}{Q}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{lmbda}\PY{o}{*}\PY{n}{P}\PY{p}{)}  \PY{c+c1}{\PYZsh{} update rule}
+              \PY{n}{Q} \PY{o}{+}\PY{o}{=} \PY{n}{gamma}\PY{o}{*}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{ERR}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{P}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{lmbda}\PY{o}{*}\PY{n}{Q}\PY{p}{)}  \PY{c+c1}{\PYZsh{} update rule}
+              
+              \PY{n}{train\PYZus{}errors}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{rmse\PYZus{}score}\PY{p}{(}\PY{n}{R}\PY{p}{,}\PY{n}{Q}\PY{p}{,}\PY{n}{P}\PY{p}{)}\PY{p}{)} \PY{c+c1}{\PYZsh{} Training RMSE for this pass}
+              \PY{n}{test\PYZus{}errors}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{rmse\PYZus{}score}\PY{p}{(}\PY{n}{T}\PY{p}{,}\PY{n}{Q}\PY{p}{,}\PY{n}{P}\PY{p}{)}\PY{p}{)} \PY{c+c1}{\PYZsh{} Test RMSE for this pass}
+          
+          \PY{c+c1}{\PYZsh{} Print how long it took}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Run took }\PY{l+s+si}{\PYZpc{}.2f}\PY{l+s+s2}{ seconds}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{timeit}\PY{o}{.}\PY{n}{default\PYZus{}timer}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{start\PYZus{}time}\PY{p}{)}\PY{p}{)}
+              
+          \PY{c+c1}{\PYZsh{} Check performance by plotting train and test errors}
+          \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{train\PYZus{}errors}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{g}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Training RMSE}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{test\PYZus{}errors}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{r}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Test RMSE}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{snp}\PY{o}{.}\PY{n}{labs}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of Epochs}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{RMSE}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Error During Batch GD}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Run took 29.58 seconds
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}472}]:} <matplotlib.legend.Legend at 0x1cc82b45860>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_24_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}473}]:} \PY{c+c1}{\PYZsh{} See how well we did on Test Set Predictions}
+          \PY{n}{Rhat} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{P}\PY{p}{,} \PY{n}{Q}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+          \PY{n}{fig}\PY{p}{,} \PY{n}{axs} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{]}\PY{p}{,} \PY{n}{nrows}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{ncols}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{sharex}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n}{fig}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Batch GD Test Performance}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{k}{for} \PY{n}{idx}\PY{p}{,} \PY{n}{ax} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{axs}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+              \PY{n}{vals} \PY{o}{=} \PY{n}{Rhat}\PY{p}{[}\PY{n}{T} \PY{o}{==} \PY{n}{idx}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{vals}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Ground Truth Rating = }\PY{l+s+si}{\PYZpc{}i}\PY{l+s+s2}{\PYZdq{}} \PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{idx}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_25_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \section{Rolling a Custom Estimator for
+Sklearn}\label{rolling-a-custom-estimator-for-sklearn}
+
+I love \texttt{GridSearchCV} and \texttt{Pipeline} so I'd really like to
+wrap the above algorithm in sklearn-API-compatible way. I'm referring to
+\href{http://scikit-learn.org/stable/developers/contributing.html\#rolling-your-own-estimator}{the
+official dev docs} on this topic. A great paper from 2013 on the general
+structure and philosophy of sklearn can he had
+\href{https://arxiv.org/pdf/1309.0238v1.pdf}{on ArXiv}. I'm going to
+leave both batch and stochastic GD as options by giving my class a
+parameter \texttt{solver} where we can specify which.
+
+So without further ado, let me grab the relevant dev helper objects,
+like the base class \texttt{BaseEstimator} that I will inherit from.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}50}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{base} \PY{k}{import} \PY{n}{BaseEstimator}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{utils}\PY{n+nn}{.}\PY{n+nn}{validation} \PY{k}{import} \PY{n}{check\PYZus{}X\PYZus{}y}\PY{p}{,} \PY{n}{check\PYZus{}array}\PY{p}{,} \PY{n}{check\PYZus{}is\PYZus{}fitted}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{utils}\PY{n+nn}{.}\PY{n+nn}{multiclass} \PY{k}{import} \PY{n}{unique\PYZus{}labels}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{euclidean\PYZus{}distances}
+         
+         \PY{k}{class} \PY{n+nc}{MC}\PY{p}{(}\PY{n}{BaseEstimator}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} An estimator for latent factor collaborative filtering models in Recommender Systems.}
+         \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,}  \PY{n}{n\PYZus{}u}\PY{p}{,} \PY{n}{n\PYZus{}m}\PY{p}{,} \PY{n}{n\PYZus{}factors}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{n\PYZus{}epochs}\PY{o}{=}\PY{l+m+mi}{250}\PY{p}{,} \PY{n}{lmbda}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{gamma}\PY{o}{=}\PY{l+m+mf}{9e\PYZhy{}5}\PY{p}{,} \PY{n}{solver}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sgd}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{:}
+                 \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{n\PYZus{}u} \PY{o}{=} \PY{n}{n\PYZus{}u}
+                 \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{n\PYZus{}m} \PY{o}{=} \PY{n}{n\PYZus{}m}
+                 \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{n\PYZus{}factors} \PY{o}{=} \PY{n}{n\PYZus{}factors}
+                 \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{n\PYZus{}epochs} \PY{o}{=} \PY{n}{n\PYZus{}epochs}
+                 \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{lmbda} \PY{o}{=} \PY{n}{lmbda}
+                 \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{gamma} \PY{o}{=} \PY{n}{gamma}
+                 \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{solver} \PY{o}{=} \PY{n}{solver}
+         
+             \PY{k}{def} \PY{n+nf}{fit}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{)}\PY{p}{:}
+                 \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Fits all the latent factors for users and items and saves the resulting matrix representations.}
+         \PY{l+s+sd}{        \PYZdq{}\PYZdq{}\PYZdq{}}
+                 \PY{n}{X}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{n}{check\PYZus{}X\PYZus{}y}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{)}
+                 
+                 
+                 \PY{c+c1}{\PYZsh{} Create training matrix}
+                 \PY{n}{R} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{n\PYZus{}u}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{n\PYZus{}m}\PY{p}{)}\PY{p}{)}
+                 \PY{k}{for} \PY{n}{idx}\PY{p}{,} \PY{n}{row} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{:}
+                     \PY{n}{R}\PY{p}{[}\PY{n}{row}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{row}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{y}\PY{p}{[}\PY{n}{idx}\PY{p}{]}  
+         
+                 \PY{c+c1}{\PYZsh{} Initialize latent factors}
+                 \PY{n}{P} \PY{o}{=} \PY{l+m+mi}{3} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{n\PYZus{}u}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{n\PYZus{}factors}\PY{p}{)} \PY{c+c1}{\PYZsh{} Latent factors for users}
+                 \PY{n}{Q} \PY{o}{=} \PY{l+m+mi}{3} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{n\PYZus{}m}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{n\PYZus{}factors}\PY{p}{)} \PY{c+c1}{\PYZsh{} Latent factors for movies}
+                             
+         
+                 \PY{k}{def} \PY{n+nf}{rmse\PYZus{}score}\PY{p}{(}\PY{n}{R}\PY{p}{,} \PY{n}{Q}\PY{p}{,} \PY{n}{P}\PY{p}{)}\PY{p}{:}
+                     \PY{n}{I} \PY{o}{=} \PY{n}{R} \PY{o}{!=} \PY{l+m+mi}{0}  \PY{c+c1}{\PYZsh{} Indicator function which is zero for missing data}
+                     \PY{n}{ME} \PY{o}{=} \PY{n}{I} \PY{o}{*} \PY{p}{(}\PY{n}{R} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{P}\PY{p}{,} \PY{n}{Q}\PY{o}{.}\PY{n}{T}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Errors between real and predicted ratings}
+                     \PY{n}{MSE} \PY{o}{=} \PY{n}{ME}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}  
+                     \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{MSE}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{I}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} sum of squared errors}
+         
+                 \PY{c+c1}{\PYZsh{} Fit with stochastic or batch gradient descent}
+                 \PY{n}{train\PYZus{}errors} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                 \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{solver} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sgd}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}
+                     \PY{c+c1}{\PYZsh{} Stochastic GD}
+                     \PY{n}{users}\PY{p}{,}\PY{n}{items} \PY{o}{=} \PY{n}{R}\PY{o}{.}\PY{n}{nonzero}\PY{p}{(}\PY{p}{)}      
+                     \PY{k}{for} \PY{n}{epoch} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{n\PYZus{}epochs}\PY{p}{)}\PY{p}{:}
+                         \PY{k}{for} \PY{n}{u}\PY{p}{,} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{users}\PY{p}{,}\PY{n}{items}\PY{p}{)}\PY{p}{:}
+                             \PY{n}{e} \PY{o}{=} \PY{n}{R}\PY{p}{[}\PY{n}{u}\PY{p}{,} \PY{n}{i}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{P}\PY{p}{[}\PY{n}{u}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{Q}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{T}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Error for this observation}
+                             \PY{n}{P}\PY{p}{[}\PY{n}{u}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{+}\PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{gamma} \PY{o}{*} \PY{p}{(} \PY{n}{e} \PY{o}{*} \PY{n}{Q}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{lmbda} \PY{o}{*} \PY{n}{P}\PY{p}{[}\PY{n}{u}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{p}{)} \PY{c+c1}{\PYZsh{} Update this user\PYZsq{}s features}
+                             \PY{n}{Q}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{+}\PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{gamma} \PY{o}{*} \PY{p}{(} \PY{n}{e} \PY{o}{*} \PY{n}{P}\PY{p}{[}\PY{n}{u}\PY{p}{,} \PY{p}{:}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{lmbda} \PY{o}{*} \PY{n}{Q}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Update this movie\PYZsq{}s features}
+                         \PY{n}{train\PYZus{}errors}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{rmse\PYZus{}score}\PY{p}{(}\PY{n}{R}\PY{p}{,}\PY{n}{Q}\PY{p}{,}\PY{n}{P}\PY{p}{)}\PY{p}{)} \PY{c+c1}{\PYZsh{} Training RMSE for this pass}
+                 \PY{k}{elif} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{solver} \PY{o}{==} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{batch\PYZus{}gd}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}
+                     \PY{c+c1}{\PYZsh{} Batch GD}
+                     \PY{k}{for} \PY{n}{epoch} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{n\PYZus{}epochs}\PY{p}{)}\PY{p}{:} 
+                         \PY{n}{ERR} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{R} \PY{o}{!=} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{R} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{P}\PY{p}{,} \PY{n}{Q}\PY{o}{.}\PY{n}{T}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} compute error with present values of Q, P, ZERO if no rating   }
+                         \PY{n}{P} \PY{o}{+}\PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{gamma}\PY{o}{*}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{Q}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{ERR}\PY{o}{.}\PY{n}{T}\PY{p}{)}\PY{o}{.}\PY{n}{T} \PY{o}{\PYZhy{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{lmbda}\PY{o}{*}\PY{n}{P}\PY{p}{)}  \PY{c+c1}{\PYZsh{} update rule}
+                         \PY{n}{Q} \PY{o}{+}\PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{gamma}\PY{o}{*}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{P}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{ERR}\PY{p}{)}\PY{o}{.}\PY{n}{T} \PY{o}{\PYZhy{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{lmbda}\PY{o}{*}\PY{n}{Q}\PY{p}{)}  \PY{c+c1}{\PYZsh{} update rule}
+                         \PY{n}{train\PYZus{}errors}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{rmse\PYZus{}score}\PY{p}{(}\PY{n}{R}\PY{p}{,}\PY{n}{Q}\PY{p}{,}\PY{n}{P}\PY{p}{)}\PY{p}{)} \PY{c+c1}{\PYZsh{} Training RMSE for this pass}
+                 \PY{k}{else}\PY{p}{:}
+                     \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{I}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{m sorry, we don}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{t recognize that solver.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}         print(\PYZdq{}Completed \PYZpc{}i epochs, final RMSE = \PYZpc{}.2f\PYZdq{} \PYZpc{}(self.n\PYZus{}epochs, train\PYZus{}errors[\PYZhy{}1]))}
+                 \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Q} \PY{o}{=} \PY{n}{Q}
+                 \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{P} \PY{o}{=} \PY{n}{P}
+                 \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{train\PYZus{}errors} \PY{o}{=} \PY{n}{train\PYZus{}errors}
+                 
+                 \PY{c+c1}{\PYZsh{} Return the estimator}
+                 \PY{k}{return} \PY{n+nb+bp}{self}
+         
+             \PY{k}{def} \PY{n+nf}{predict}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{X}\PY{p}{)}\PY{p}{:}
+                 \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} Predicts a vector of ratings from a matrix of user and item ids.}
+         \PY{l+s+sd}{        \PYZdq{}\PYZdq{}\PYZdq{}}
+                 \PY{n}{X} \PY{o}{=} \PY{n}{check\PYZus{}array}\PY{p}{(}\PY{n}{X}\PY{p}{)}
+                 
+                 \PY{n}{y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{PRED} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{P}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{Q}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+                 \PY{k}{for} \PY{n}{idx}\PY{p}{,} \PY{n}{row} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{:}
+                     \PY{n}{y}\PY{p}{[}\PY{n}{idx}\PY{p}{]} \PY{o}{=} \PY{n}{PRED}\PY{p}{[}\PY{n}{row}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{row}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+                 
+                 
+                 \PY{k}{return} \PY{n}{y}
+         
+             \PY{k}{def} \PY{n+nf}{score}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{)}\PY{p}{:}
+                 \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} Element\PYZhy{}wise root mean squared error.}
+         \PY{l+s+sd}{        \PYZdq{}\PYZdq{}\PYZdq{}}
+                 \PY{n}{yp} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X}\PY{p}{)}
+                 \PY{n}{err} \PY{o}{=} \PY{n}{y} \PY{o}{\PYZhy{}} \PY{n}{yp}
+                 \PY{n}{mse} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{err}\PY{p}{,} \PY{n}{err}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{n+nb}{len}\PY{p}{(}\PY{n}{err}\PY{p}{)}
+                 \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{mse}\PY{p}{)}
+\end{Verbatim}
+
+
+    OK now that the class is defined let's use the full data set to get
+\(X\) and \(y\) in the proper format. \texttt{GridSearchCV} will do it's
+own train/test splitting with K-Folds. I also designed the class to
+require the total number of users and movies as parameters in the
+constructor, that was just the simplest thing to do, so we need to count
+those and then pass them in.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} \PY{n}{X} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{user\PYZus{}id}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{item\PYZus{}id}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{as\PYZus{}matrix}\PY{p}{(}\PY{p}{)}
+         \PY{n}{y} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rating}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}
+         \PY{n}{n\PYZus{}u} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{user\PYZus{}id}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{n\PYZus{}m} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{item\PYZus{}id}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsubsection{Grid Search with Batch
+GD}\label{grid-search-with-batch-gd}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}54}]:} \PY{n}{rcmdr} \PY{o}{=} \PY{n}{MC}\PY{p}{(}\PY{n}{n\PYZus{}u}\PY{o}{=}\PY{n}{n\PYZus{}u}\PY{p}{,} \PY{n}{n\PYZus{}m}\PY{o}{=}\PY{n}{n\PYZus{}m}\PY{p}{,} \PY{n}{gamma}\PY{o}{=}\PY{l+m+mf}{6e\PYZhy{}5}\PY{p}{,} \PY{n}{n\PYZus{}epochs}\PY{o}{=}\PY{l+m+mi}{400}\PY{p}{,} \PY{n}{solver}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{batch\PYZus{}gd}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{params} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{lmbda}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{p}{(}\PY{l+m+mi}{45}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{55}\PY{p}{)}\PY{p}{,}
+                  \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{n\PYZus{}factors}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{18}\PY{p}{,} \PY{l+m+mi}{21}\PY{p}{)}\PY{p}{\PYZcb{}}
+         \PY{n}{search} \PY{o}{=} \PY{n}{GridSearchCV}\PY{p}{(}\PY{n}{rcmdr}\PY{p}{,} \PY{n}{param\PYZus{}grid}\PY{o}{=}\PY{n}{params}\PY{p}{,} \PY{n}{cv}\PY{o}{=}\PY{l+m+mi}{4}\PY{p}{)}
+         \PY{n}{search}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}54}]:} GridSearchCV(cv=4, error\_score='raise',
+                estimator=MC(gamma=6e-05, lmbda=10, n\_epochs=400, n\_factors=10, n\_m=1682, n\_u=943,
+           solver='batch\_gd'),
+                fit\_params=\{\}, iid=True, n\_jobs=1,
+                param\_grid=\{'n\_factors': (15, 18, 21), 'lmbda': (45, 50, 55)\},
+                pre\_dispatch='2*n\_jobs', refit=True, return\_train\_score=True,
+                scoring=None, verbose=0)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} \PY{n}{best\PYZus{}est} \PY{o}{=} \PY{n}{search}\PY{o}{.}\PY{n}{best\PYZus{}estimator\PYZus{}}
+         \PY{n}{results} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{search}\PY{o}{.}\PY{n}{cv\PYZus{}results\PYZus{}}\PY{p}{)}
+         \PY{n}{results}\PY{p}{[}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mean\PYZus{}test\PYZus{}score}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{std\PYZus{}test\PYZus{}score}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{params}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by}\PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mean\PYZus{}test\PYZus{}score}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}55}]:}    mean\_test\_score  std\_test\_score                          params
+         2         1.133234        0.020078  \{'n\_factors': 21, 'lmbda': 45\}
+         1         1.137760        0.019921  \{'n\_factors': 18, 'lmbda': 45\}
+         0         1.145937        0.020081  \{'n\_factors': 15, 'lmbda': 45\}
+         5         1.167905        0.021226  \{'n\_factors': 21, 'lmbda': 50\}
+         4         1.178751        0.021582  \{'n\_factors': 18, 'lmbda': 50\}
+\end{Verbatim}
+            
+    \subsubsection{Grid Search with Stochastic
+GD}\label{grid-search-with-stochastic-gd}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}56}]:} \PY{n}{rcmdr} \PY{o}{=} \PY{n}{MC}\PY{p}{(}\PY{n}{n\PYZus{}u}\PY{o}{=}\PY{n}{n\PYZus{}u}\PY{p}{,} \PY{n}{n\PYZus{}m}\PY{o}{=}\PY{n}{n\PYZus{}m}\PY{p}{,} \PY{n}{gamma}\PY{o}{=}\PY{l+m+mf}{0.01}\PY{p}{,} \PY{n}{n\PYZus{}epochs}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{solver}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sgd}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{params} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{lmbda}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mf}{0.75}\PY{p}{)}\PY{p}{,}
+                  \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{n\PYZus{}factors}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{p}{(}\PY{l+m+mi}{18}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{,} \PY{l+m+mi}{22}\PY{p}{)}\PY{p}{\PYZcb{}}
+         \PY{n}{search} \PY{o}{=} \PY{n}{GridSearchCV}\PY{p}{(}\PY{n}{rcmdr}\PY{p}{,} \PY{n}{param\PYZus{}grid}\PY{o}{=}\PY{n}{params}\PY{p}{,} \PY{n}{cv}\PY{o}{=}\PY{l+m+mi}{4}\PY{p}{)}
+         \PY{n}{search}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}56}]:} GridSearchCV(cv=4, error\_score='raise',
+                estimator=MC(gamma=0.01, lmbda=10, n\_epochs=50, n\_factors=10, n\_m=1682, n\_u=943,
+           solver='sgd'),
+                fit\_params=\{\}, iid=True, n\_jobs=1,
+                param\_grid=\{'n\_factors': (18, 20, 22), 'lmbda': (0.25, 0.5, 0.75)\},
+                pre\_dispatch='2*n\_jobs', refit=True, return\_train\_score=True,
+                scoring=None, verbose=0)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}57}]:} \PY{n}{best\PYZus{}est} \PY{o}{=} \PY{n}{search}\PY{o}{.}\PY{n}{best\PYZus{}estimator\PYZus{}}
+         \PY{n}{results} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{search}\PY{o}{.}\PY{n}{cv\PYZus{}results\PYZus{}}\PY{p}{)}
+         \PY{n}{results}\PY{p}{[}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mean\PYZus{}test\PYZus{}score}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{std\PYZus{}test\PYZus{}score}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{params}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by}\PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mean\PYZus{}test\PYZus{}score}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}57}]:}    mean\_test\_score  std\_test\_score                            params
+         1         1.033814        0.004699  \{'n\_factors': 20, 'lmbda': 0.25\}
+         0         1.034799        0.006061  \{'n\_factors': 18, 'lmbda': 0.25\}
+         5         1.154195        0.009601   \{'n\_factors': 22, 'lmbda': 0.5\}
+         3         1.157405        0.010514   \{'n\_factors': 18, 'lmbda': 0.5\}
+         4         1.159038        0.012480   \{'n\_factors': 20, 'lmbda': 0.5\}
+\end{Verbatim}
+            
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
